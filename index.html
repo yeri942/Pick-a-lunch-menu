@@ -4,13 +4,55 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="style.css" />
         <title>Pick a Lunch Menu</title>
     </head>
     <body>
         <div class="result">결과</div>
-        <input type="text" />
-        <input type="button" value="추가" />
-        <div class="menu_list"></div>
-        <div class="map"></div>
+        <div class="warp">
+            <div class="left_side">
+                <div class="inputWrap">
+                    <input class="inputForm" type="text" />
+                    <input class="inputBtn" type="button" value="추가" />
+                </div>
+                <div class="menu_list"></div>
+            </div>
+            <div class="map_wrap">
+                <div
+                    id="map"
+                    style="
+                        width: 100%;
+                        height: 100%;
+                        position: relative;
+                        overflow: hidden;
+                    "
+                ></div>
+
+                <div id="menu_wrap" class="bg_white">
+                    <div class="option">
+                        <div>
+                            <form onsubmit="searchPlaces(); return false;">
+                                키워드 :
+                                <input
+                                    type="text"
+                                    value="이태원 맛집"
+                                    id="keyword"
+                                    size="15"
+                                />
+                                <button type="submit">검색하기</button>
+                            </form>
+                        </div>
+                    </div>
+                    <hr />
+                    <ul id="placesList"></ul>
+                    <div id="pagination"></div>
+                </div>
+            </div>
+        </div>
+        <script
+            type="text/javascript"
+            src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f5723a302f763227b801213e49a222a0"
+        ></script>
+        <script src="script.js"></script>
     </body>
 </html>

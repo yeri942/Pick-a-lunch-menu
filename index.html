@@ -8,7 +8,10 @@
         <title>Pick a Lunch Menu</title>
     </head>
     <body>
-        <div class="result">결과</div>
+        <div class="topWrap">
+            <div class="result">결과</div>
+            <input class="topBtn" type="button" value="결정" />
+        </div>
         <div class="warp">
             <div class="left_side">
                 <div class="inputWrap">
@@ -57,6 +60,29 @@
             type="text/javascript"
             src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f5723a302f763227b801213e49a222a0&libraries=services"
         ></script>
+        <script type="module">
+            // Import the functions you need from the SDKs you need
+            import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.2/firebase-app.js";
+            import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.8.2/firebase-analytics.js";
+            // TODO: Add SDKs for Firebase products that you want to use
+            // https://firebase.google.com/docs/web/setup#available-libraries
+
+            // Your web app's Firebase configuration
+            // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+            const firebaseConfig = {
+                apiKey: "AIzaSyAXqj48x0YmyLu0m7iPfqSEQF5cL7aMXqo",
+                authDomain: "pick-a-lunch-menu.firebaseapp.com",
+                projectId: "pick-a-lunch-menu",
+                storageBucket: "pick-a-lunch-menu.appspot.com",
+                messagingSenderId: "947920311322",
+                appId: "1:947920311322:web:c673900c35b59c3a566da3",
+                measurementId: "G-XFSXELCTGT",
+            };
+
+            // Initialize Firebase
+            const app = initializeApp(firebaseConfig);
+            const analytics = getAnalytics(app);
+        </script>
         <script src="script.js"></script>
     </body>
 </html>

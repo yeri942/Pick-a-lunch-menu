@@ -1,3 +1,31 @@
+//메뉴 추가
+
+const menu_list = document.getElementById("menu_list");
+let menu_index = 0;
+const addMenu = () => {
+    menu_index++;
+    let inputmenu = document.getElementById("inputForm");
+    const newDiv = document.createElement("div");
+    newDiv.innerHTML = inputmenu.value;
+    newDiv.id = "menu" + menu_index;
+    menu_list.appendChild(newDiv);
+    inputmenu.value = "";
+};
+
+// 랜덤함수
+const randomNum = (min, max) => {
+    var randNum = Math.floor(Math.random() * (max - min + 1)) + min;
+    return randNum;
+};
+
+//랜덤으로 음식 골라서 상단에 띄우기
+const result = document.getElementById("result");
+const randomMenu = () => {
+    let chosenMenu = document.getElementById("menu" + randomNum(1, menu_index));
+    result.innerHTML = chosenMenu.innerText;
+};
+
+// 지도
 // 마커를 담을 배열입니다
 var markers = [];
 

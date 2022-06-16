@@ -9,16 +9,30 @@
     </head>
     <body>
         <div class="topWrap">
-            <div class="result">결과</div>
-            <input class="topBtn" type="button" value="결정" />
+            <div id="result">결과</div>
+            <input
+                class="topBtn"
+                type="button"
+                value="결정"
+                onclick="randomMenu();"
+            />
         </div>
         <div class="warp">
             <div class="left_side">
                 <div class="inputWrap">
-                    <input class="inputForm" type="text" />
-                    <input class="inputBtn" type="button" value="추가" />
+                    <input
+                        id="inputForm"
+                        type="text"
+                        onkeyup="if(window.event.keyCode==13){addMenu()}"
+                    />
+                    <input
+                        id="inputBtn"
+                        type="button"
+                        value="추가"
+                        onclick="addMenu();"
+                    />
                 </div>
-                <div class="menu_list"></div>
+                <div id="menu_list"></div>
             </div>
             <div class="map_wrap">
                 <div

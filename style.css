@@ -31,6 +31,7 @@
 #inputForm {
     width: 70%;
     height: 50px;
+    font-size: 3vh;
 }
 #inputBtn {
     width: 25%;
@@ -39,8 +40,15 @@
 }
 #menu_list {
     width: 100%;
-    height: 90.8%;
-    background-color: #009900;
+    height: 73vh;
+    overflow: scroll;
+}
+#menu_list div {
+    font-size: 3vh;
+    padding: 10px;
+    margin: 10px;
+    border: 5px solid #ffe46d;
+    border-radius: 10px;
 }
 /* 지도S */
 .map_wrap,

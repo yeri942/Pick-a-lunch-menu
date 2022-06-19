@@ -3,13 +3,17 @@
 const menu_list = document.getElementById("menu_list");
 let menu_index = 0;
 const addMenu = () => {
-    menu_index++;
     let inputmenu = document.getElementById("inputForm");
     const newDiv = document.createElement("div");
-    newDiv.innerHTML = inputmenu.value;
-    newDiv.id = "menu" + menu_index;
-    menu_list.appendChild(newDiv);
-    inputmenu.value = "";
+    if (inputmenu.value.length === inputmenu.value.search(/\s/) + 1) {
+        alert("메뉴를 입력하세요");
+    } else if (inputmenu.value.length > 0) {
+        menu_index++;
+        newDiv.innerHTML = inputmenu.value;
+        newDiv.id = "menu" + menu_index;
+        menu_list.appendChild(newDiv);
+        inputmenu.value = "";
+    }
 };
 
 // 랜덤함수

@@ -14,6 +14,9 @@
 .topBtn {
     width: 5.8%;
     font-size: 3vh;
+    background-color: #ffa76d;
+    border: none;
+    color: #482900;
 }
 .warp {
     display: flex;
@@ -32,24 +35,39 @@
     width: 70%;
     height: 50px;
     font-size: 3vh;
+    border: none;
+    border-bottom: 5px solid #ffe46d;
+    transition-duration: 0.5s;
+}
+#inputForm:focus {
+    outline: none;
+    border-bottom: 5px solid #ffa76d;
+    caret-color: #482900;
 }
 #inputBtn {
     width: 25%;
     height: 56px;
     font-size: 3vh;
+    background-color: #ffe46d;
+    border: none;
+    color: #482900;
 }
 #menu_list {
     width: 100%;
     height: 73vh;
     overflow: scroll;
+    -ms-overflow-style: none;
+}
+::-webkit-scrollbar {
+    display: none;
 }
 #menu_list div {
     font-size: 3vh;
     padding: 10px;
     margin: 10px;
     border: 5px solid #ffe46d;
-    border-radius: 10px;
 }
+
 /* 지도S */
 .map_wrap,
 .map_wrap * {

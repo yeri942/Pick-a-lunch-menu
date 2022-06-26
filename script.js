@@ -91,6 +91,16 @@ function displayMarker(locPosition, message) {
 }
 // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< gps 끝 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
+// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< 현재좌표 주소 시작 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+// 주소-좌표 변환 객체를 생성합니다
+var geocoder = new kakao.maps.services.Geocoder();
+
+function searchDetailAddrFromCoords(coords, callback) {
+    // 좌표로 법정동 상세 주소 정보를 요청합니다
+    geocoder.coord2Address(coords.getLng(), coords.getLat(), callback);
+}
+// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< 현재좌표 주소 끝 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
 // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< 장소검색 시작 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 // 장소 검색 객체를 생성합니다
 var ps = new kakao.maps.services.Places();
@@ -100,15 +110,37 @@ var infowindow = new kakao.maps.InfoWindow({ zIndex: 1 });
 
 // 키워드 검색을 요청하는 함수입니다
 function searchPlaces(searchMenu) {
-    var keyword = searchMenu + "맛집";
+    if (navigator.geolocation) {
+        // GeoLocation을 이용해서 접속 위치를 얻어옵니다
+        navigator.geolocation.getCurrentPosition(function (position) {
+            var lat = position.coords.latitude, // 위도
+                lng = position.coords.longitude; // 경도
+            getAddr(lat, lng);
+            function getAddr(lat, lng) {
+                let geocoder = new kakao.maps.services.Geocoder();
 
-    if (!keyword.replace(/^\s+|\s+$/g, "")) {
-        alert("키워드를 입력해주세요!");
-        return false;
+                let coord = new kakao.maps.LatLng(lat, lng);
+                let callback = function (result, status) {
+                    if (status === kakao.maps.services.Status.OK) {
+                        console.log(result);
+                        console.log(result[0].address.address_name);
+                        var keyword =
+                            result[0].address.address_name +
+                            searchMenu +
+                            "맛집";
+                        // 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
+                        ps.keywordSearch(keyword, placesSearchCB);
+                    }
+                };
+
+                geocoder.coord2Address(
+                    coord.getLng(),
+                    coord.getLat(),
+                    callback
+                );
+            }
+        });
     }
-
-    // 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
-    ps.keywordSearch(keyword, placesSearchCB);
 }
 
 // 장소검색이 완료됐을 때 호출되는 콜백함수 입니다

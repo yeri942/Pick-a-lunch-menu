@@ -1,0 +1,23 @@
+{
+  "name": "pick-a-lunch-menu",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yeri942/Pick-a-lunch-menu.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yeri942/Pick-a-lunch-menu/issues"
+  },
+  "homepage": "https://github.com/yeri942/Pick-a-lunch-menu#readme",
+  "dependencies": {
+    "firebase": "^9.9.0"
+  }
+}

@@ -62,15 +62,19 @@
             src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f5723a302f763227b801213e49a222a0&libraries=services"
         ></script>
         <!-- update the version number as needed -->
-        <script defer src="/__/firebase/9.9.0/firebase-app.js"></script>
-        <!-- include only the Firebase features as you need -->
-        <script defer src="/__/firebase/9.9.0/firebase-auth.js"></script>
-        <script defer src="/__/firebase/9.9.0/firebase-database.js"></script>
-        <script defer src="/__/firebase/9.9.0/firebase-firestore.js"></script>
         <script type="module">
             import { initializeApp } from "https://www.gstatic.com/firebasejs/9.9.0/firebase-app.js";
-            import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.9.0/firebase-analytics.js";
+            import {
+                getFirestore,
+                doc,
+                getDoc,
+                getDocs,
+                collection,
+            } from "https://www.gstatic.com/firebasejs/9.9.0/firebase-firestore.js";
+            // Follow this pattern to import other Firebase services
+            // import { } from 'firebase/<service>';
 
+            // TODO: Replace the following with your app's Firebase project configuration
             const firebaseConfig = {
                 apiKey: "AIzaSyAXqj48x0YmyLu0m7iPfqSEQF5cL7aMXqo",
                 authDomain: "pick-a-lunch-menu.firebaseapp.com",
@@ -83,17 +87,17 @@
                 measurementId: "G-XFSXELCTGT",
             };
 
-            // Initialize Firebase
             const app = initializeApp(firebaseConfig);
-            const analytics = getAnalytics(app);
-        </script>
-        <script>
-            const db = firebase.firestore();
-            db.collection("menu")
-                .get()
-                .then((result) => {
-                    console.log(result);
-                });
+            const db = getFirestore(app);
+
+            // Get a list of cities from your database
+            async function getCities(db) {
+                const citiesCol = collection(db, "user1");
+                const citySnapshot = await getDocs(citiesCol);
+                const cityList = citySnapshot.docs.map((doc) => doc.data());
+                return cityList;
+            }
+            console.log(getCities(db));
         </script>
         <script src="script.js"></script>
     </body>
